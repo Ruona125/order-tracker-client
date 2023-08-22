@@ -9,44 +9,11 @@ import Logo from "../../assets/order.jpg";
 import { Button, MenuItem, IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-const securityQuestions = [
-  {
-    value: "-- Select Security Question",
-    label: "-- Select Security Question",
-  },
-  {
-    value: "What was your childhood nickname?",
-    label: "What was your childhood nickname?",
-  },
-  {
-    value: "In what city did you mother and father meet?",
-    label: "In what city did your mother and father meet?",
-  },
-  {
-    value: "What is your favourite movie?",
-    label: "What is your favourite movie?",
-  },
-  {
-    value: "What is your favourite color?",
-    label: "What is your favourite color?",
-  },
-  {
-    value: "What is your mother's maiden name?",
-    label: "What is your mother's maiden name?",
-  },
-  {
-    value: "What phone number do your remember most from your childhood?",
-    label: "What phone number do your remember most from your childhood?",
-  },
-];
-
 const CreateStaffComponent: React.FC = () => {
   const { token } = useSelector((state: any) => state.user.userDetails);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [security_question, setSecurityQuestion] = useState("");
-  const [security_answer, setSecurityAnswer] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
@@ -61,8 +28,6 @@ const CreateStaffComponent: React.FC = () => {
     name: string,
     email: string,
     password: string,
-    security_question: string,
-    security_answer: string
   ) => {
     setLoading(true);
     try {
@@ -72,8 +37,6 @@ const CreateStaffComponent: React.FC = () => {
           name,
           email,
           password,
-          security_question,
-          security_answer,
         },
         {
           headers: {
@@ -94,7 +57,7 @@ const CreateStaffComponent: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    register(name, email, password, security_question, security_answer);
+    register(name, email, password);
   };
 
   return (
@@ -149,28 +112,6 @@ const CreateStaffComponent: React.FC = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value.toLowerCase())}
           InputLabelProps={{ style: { color: "red" } }}
-        />
-        <br />
-        <TextField
-          id="outlined-security-question"
-          select
-          label="Security Question"
-          value={security_question}
-          onChange={(e) => setSecurityQuestion(e.target.value)}
-        >
-          {securityQuestions.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          variant="outlined"
-          type="text"
-          label="Security Answer"
-          value={security_answer}
-          onChange={(e) => setSecurityAnswer(e.target.value.toLowerCase())}
-          fullWidth
         />
         <br />
         <TextField
