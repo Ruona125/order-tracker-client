@@ -15,10 +15,8 @@ interface OrderData {
   end_date: string;
   status: string | null;
   customer_id: string;
-  full_name:string | null;
-  order_number: number | null
- 
-
+  full_name: string | null;
+  order_number: number | null;
 }
 
 const CreateOrderComponent: React.FC = () => {
@@ -28,7 +26,7 @@ const CreateOrderComponent: React.FC = () => {
 
   const [details, setDetails] = useState<string | null>("");
   const [cost_of_order, setCostOfOrder] = useState<number | null>(null);
-  const [order_number, setOrderNumber] = useState<number | null>(null)
+  const [order_number, setOrderNumber] = useState<number | null>(null);
   const [start_date, setStartDate] = useState<string>(
     new Date().toISOString().split("T")[0]
   );
@@ -36,14 +34,14 @@ const CreateOrderComponent: React.FC = () => {
     new Date().toISOString().split("T")[0]
   );
   const [status, setStatus] = useState<string | null>("");
-  const [order_design_artwork, setOrderDesignArtwork] = useState<File | null>(
+  const [order_design_artwork, setOrderDesignArtwork] = useState<FileList | null>(
     null
   );
+  
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     const url = `http://localhost:8000/customer/${customer_id}`;
@@ -68,9 +66,15 @@ const CreateOrderComponent: React.FC = () => {
     formData.append("start_date", start_date);
     formData.append("end_date", end_date);
     formData.append("status", String(status));
-    formData.append("order_number", String(order_number))
+    formData.append("order_number", String(order_number));
     if (order_design_artwork !== null) {
-      formData.append("order_design_artwork", order_design_artwork);
+      if (order_design_artwork instanceof FileList) {
+        for (let i = 0; i < order_design_artwork.length; i++) {
+          formData.append("order_design_artwork", order_design_artwork[i]);
+        }
+      } else {
+        formData.append("order_design_artwork", order_design_artwork);
+      }
     }
 
     const url = "http://localhost:8000/order";
@@ -78,32 +82,32 @@ const CreateOrderComponent: React.FC = () => {
       "Content-Type": "multipart/form-data",
       Authorization: token,
     };
-    setLoading(true)
+    setLoading(true);
 
     try {
       const res = await axios.post(url, formData, { headers });
       if (res.status === 200) {
-        setDetails("")
+        setDetails("");
         setCostOfOrder(0);
         setStartDate("");
         setEndDate("");
-        setStatus("")
+        setStatus("");
         setOrderNumber(0);
-        setLoading(false)
-        navigate("/order")
+        setLoading(false);
+        navigate("/order");
       } else {
         setError("Error sending data");
       }
     } catch (err) {
-      setLoading(false)
+      setLoading(false);
       setError("Error sending data");
     }
   };
 
   const fileSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setOrderDesignArtwork(file);
+    const files = event.target.files;
+    if (files) {
+      setOrderDesignArtwork(files);
     }
   };
 
@@ -113,7 +117,9 @@ const CreateOrderComponent: React.FC = () => {
         <center>
           <img src={Logo} className="img-logo" alt="logo" />
         </center>
-        <h2 className="login-heading">Create order({certainOrder.full_name})</h2>
+        <h2 className="login-heading">
+          Create order({certainOrder.full_name})
+        </h2>
         <form
           style={{ display: "grid", marginTop: "23px" }}
           noValidate
@@ -187,22 +193,24 @@ const CreateOrderComponent: React.FC = () => {
           <br />
 
           <label
-            htmlFor="file-upload"
-            style={{
-              justifyContent: "center",
-              paddingBottom: "15px",
-              color: "red",
-            }}
-          >
-            Order Design:
-          </label>
-          <input
-            onChange={fileSelected}
-            type="file"
-            name="order_design_artwork"
-            accept="image/*"
-            style={{ paddingBottom: "23px" }}
-          />
+  htmlFor="file-upload"
+  style={{
+    justifyContent: "center",
+    paddingBottom: "15px",
+    color: "red",
+  }}
+>
+  Order Design:
+</label>
+<input
+  onChange={fileSelected}
+  type="file"
+  name="order_design_artwork"
+  multiple
+  accept="*"  // Add this line to accept all file types
+  style={{ paddingBottom: "23px" }}
+/>
+
           {/* <br /> */}
 
           {loading ? (
