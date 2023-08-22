@@ -1,0 +1,12 @@
+.container {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+     /* Adjust the height as needed */
+     margin-top:90px;
+     
+  }
+
+  .logo-size{
+    width: 12px;
+  }
