@@ -56,7 +56,7 @@ const IncompleteTaskComponent: React.FC = () => {
 
   useEffect(() => {
     const fetchTask = () => {
-      const url = "http://localhost:8000/task/pending";
+      const url = "https://order-tracker-api-production.up.railway.app/task/pending";
       const headers = {
         "Content-Type": "application/json",
         Authorization: token,

@@ -26,6 +26,7 @@ import OrderDesign from "./pages/OrderDesign/OrderDesign";
 import ChangePassword from "./pages/ChangePassword/ChangePassword";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
+import RegisterAdmin from "./pages/RegisterAdmin/RegisterAdmin";
 
 function App() {
   const isSignedIn = useSelector((state:any) => state.user.isSignedIn)
@@ -33,6 +34,7 @@ function App() {
     <>
       <div>
         <Routes>
+          <Route path="/admin/register" element={<RegisterAdmin />} /> 
           <Route path="/" element={<Login />} />
           <Route path="/profile" element={isSignedIn ? <Profile /> : <Login />} />
           <Route path="/home" element={isSignedIn ? <HomePage /> : <Login />} />

@@ -29,7 +29,7 @@ const ModifyExpensesComponent: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `http://localhost:8000/expenses/${expenses_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/expenses/${expenses_id}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -46,7 +46,7 @@ const ModifyExpensesComponent: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const url = `http://localhost:8000/expenses/${expenses_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/expenses/${expenses_id}`;
     const data: ExpensesData = {
       amount,
       name_of_expenses,

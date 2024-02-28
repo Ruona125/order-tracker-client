@@ -93,7 +93,7 @@ const OngoingOrderComponent = () => {
 
   useEffect(() => {
     const fetchOngoingOrders = () => {
-      const url = "http://localhost:8000/order/ongoing/order";
+      const url = "https://order-tracker-api-production.up.railway.app/order/ongoing/order";
       const headers = {
         "Content-Type": "application/json",
         Authorization: token,

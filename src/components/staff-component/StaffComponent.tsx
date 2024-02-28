@@ -74,7 +74,7 @@ const StaffComponent: React.FC = () => {
   const { token, roles } = useSelector((state: any) => state.user.userDetails);
 
   useEffect(() => {
-    const url = "http://localhost:8000/user/register";
+    const url = "https://order-tracker-api-production.up.railway.app/user/register";
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -102,7 +102,7 @@ const StaffComponent: React.FC = () => {
   };
 
   const handleDelete = (user_id: string) => {
-    const url = `http://localhost:8000/user/register/${user_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/user/register/${user_id}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,

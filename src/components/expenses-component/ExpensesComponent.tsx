@@ -105,7 +105,7 @@ const ExpensesComponent: React.FC = () => {
   const { token, roles } = useSelector((state: any) => state.user.userDetails);
 
   useEffect(() => {
-    const url = "http://localhost:8000/expenses";
+    const url = "https://order-tracker-api-production.up.railway.app/expenses";
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -132,7 +132,7 @@ const ExpensesComponent: React.FC = () => {
   };
 
   const handleDelete = (expensesId: string) => {
-    const url = `http://localhost:8000/expenses/${expensesId}`;
+    const url = `https://order-tracker-api-production.up.railway.app/expenses/${expensesId}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,

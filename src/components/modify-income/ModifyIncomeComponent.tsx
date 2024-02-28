@@ -29,7 +29,7 @@ const ModifyIncomeComponent: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `http://localhost:8000/income/${income_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/income/${income_id}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -45,7 +45,7 @@ const ModifyIncomeComponent: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const url = `http://localhost:8000/income/${income_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/income/${income_id}`;
     const data: IncomeData = {
       amount,
       name_of_income,

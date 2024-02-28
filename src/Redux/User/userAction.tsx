@@ -23,7 +23,7 @@ const userLoginFailed = (message: string) => ({
 export const userLogin = (userDetails: LoginDetails) => async (dispatch: Dispatch): Promise<void> => {
   try {
     dispatch(userLoginStart());
-    const res = await fetch("http://localhost:8000/user/login", {
+    const res = await fetch("https://order-tracker-api-production.up.railway.app/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const logoutSuccess = (message: string) => ({
 
 export const logout = (token: string) => async (dispatch: Dispatch) => {
   try {
-    const res = await fetch('http://localhost:8000/user/logout', {
+    const res = await fetch('https://order-tracker-api-production.up.railway.app/user/logout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -69,5 +69,6 @@ export const logout = (token: string) => async (dispatch: Dispatch) => {
     }
   } catch (err) {
     dispatch(userLoginFailed(""));
+    // console.log(err)
   }
 };

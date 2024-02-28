@@ -24,15 +24,11 @@ const CreateStaffComponent: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const register = async (
-    name: string,
-    email: string,
-    password: string,
-  ) => {
+  const register = async (name: string, email: string, password: string) => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:8000/user/register",
+        "https://order-tracker-api-production.up.railway.app/user/register",
         {
           name,
           email,

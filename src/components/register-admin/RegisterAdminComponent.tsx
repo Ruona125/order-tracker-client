@@ -1,70 +1,66 @@
-import React, { useState, useEffect, FormEvent } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
-import { userLogin } from "../../Redux/User/userAction";
-import Box from "@mui/material/Box";
-import "./Login.css";
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Logo from "../../assets/order.jpg";
-
-import { IconButton, InputAdornment } from "@mui/material";
+import { Button, MenuItem, IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { AnyAction } from "redux";
-import { ThunkDispatch } from "redux-thunk"; // Import ThunkDispatch
 
-interface LoginDetails {
-  email: string;
-  password: string;
-}
-
-const LoginComponent: React.FC = () => {
-  const [err, setErr] = useState<string>("");
-  const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch(); // Use ThunkDispatch
-  const isSignedIn = useSelector((state: any) => state.user.isSignedIn);
-  const msg = useSelector((state: any) => state.user.message);
-  const isLoading = useSelector((state: any) => state.user.isLoading);
-  const navigate = useNavigate();
-
+const RegisterAdminComponent = () => {
+  const { token } = useSelector((state: any) => state.user.userDetails);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const loginDetails: LoginDetails = {
-    email,
-    password,
+  const navigate = useNavigate();
+
+  const register = async (name: string, email: string, password: string) => {
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        "https://order-tracker-api-production.up.railway.app/user/register/admin",
+        {
+          name,
+          email,
+          password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      if (res.status === 200) {
+        navigate("/home");
+        setLoading(false);
+      }
+    } catch (err) {
+      setError("An error occurred, please try again");
+      setLoading(false);
+    }
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.length === 0 || password.length === 0) {
-      return;
-    } else {
-      dispatch(userLogin(loginDetails)); // Dispatch the async action
-    }
+    register(name, email, password);
   };
-
-  useEffect(() => {
-    if (isSignedIn) {
-      navigate("/home");
-    }
-  }, [isSignedIn, navigate]);
-
-  useEffect(() => {
-    setErr(msg);
-  }, [setErr, msg]);
-
   return (
     <div className="container">
       <center>
         <img src={Logo} className="img-logo" alt="Logo" />
       </center>
-      <h2 className="login-heading">Login</h2>
+      <h2 className="login-heading">Create Admin Account</h2>
 
       <Box
         component="form"
@@ -91,10 +87,21 @@ const LoginComponent: React.FC = () => {
         style={{ display: "grid", marginTop: "23px" }}
         noValidate
         autoComplete="off"
+        onSubmit={handleSubmit}
       >
         <TextField
-          id="outlined-basic"
-          label="email"
+          id="outlined-name"
+          label="Name"
+          variant="outlined"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          InputLabelProps={{ style: { color: "red" } }}
+        />
+        <br />
+        <TextField
+          id="outlined-email"
+          label="Email"
           variant="outlined"
           type="email"
           value={email}
@@ -103,7 +110,7 @@ const LoginComponent: React.FC = () => {
         />
         <br />
         <TextField
-          id="outlined-basic"
+          id="outlined-password"
           label="Password"
           variant="outlined"
           type={showPassword ? "text" : "password"}
@@ -124,40 +131,25 @@ const LoginComponent: React.FC = () => {
             ),
           }}
         />
-      </Box>
-      <em>
-        <Link to="/forgot/password" className="link-style">
-          {" "}
-          Forgot Password?
-        </Link>
-      </em>
-      <em>
-        <Link to="/admin/register" className="link-style">
-          {" "}
-          Create Admin Account
-        </Link>
-      </em>
-      <center>
-        {isLoading ? (
-          <CircularProgress style={{ color: "red" }} />
+
+        {loading ? (
+          <center>
+            <CircularProgress style={{ color: "red" }} />
+          </center>
         ) : (
           <Button
-            type="button"
+            type="submit"
             variant="contained"
             className="login-button"
             style={{ color: "#fff", backgroundColor: "red", marginTop: "23px" }}
-            onClick={handleSubmit}
           >
-            Login
+            Create Staff
           </Button>
         )}
-        <br /> <br />
-        <p className="msg" style={{ color: "red" }}>
-          {err}
-        </p>
-      </center>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+      </Box>
     </div>
   );
 };
 
-export default LoginComponent;
+export default RegisterAdminComponent;

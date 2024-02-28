@@ -20,7 +20,7 @@ const ResetPasswordComponent = () => {
   const [error, setError] = useState<string | null>(null);
 
 //   useEffect(() => {
-//     const url = `http://localhost:8000/user/register/${reset_token}`;
+//     const url = `https://order-tracker-api-production.up.railway.app/user/register/${reset_token}`;
 //     // const headers = {
 //     //   "Content-Type": "application/json",
 //     //   Authorization: token,
@@ -33,7 +33,7 @@ const ResetPasswordComponent = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const url = `http://localhost:8000/reset/password/${reset_token}`;
+    const url = `https://order-tracker-api-production.up.railway.app/reset/password/${reset_token}`;
     const data: ForgotPasswordDetails = {
       password: password,
       confirm_password: confirm_password

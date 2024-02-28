@@ -34,7 +34,7 @@ const CreateTaskComponent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `http://localhost:8000/user/register/${user_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/user/register/${user_id}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -49,7 +49,7 @@ const CreateTaskComponent = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const url = `http://localhost:8000/task`;
+    const url = `https://order-tracker-api-production.up.railway.app/task`;
     const data: TaskData = {
       user_id: user_id,
       deadline,

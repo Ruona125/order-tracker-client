@@ -98,7 +98,7 @@ const CustomerComponent: React.FC = () => {
   const { token, roles } = useSelector((state: any) => state.user.userDetails);
 
   useEffect(() => {
-    const url = "http://localhost:8000/customer";
+    const url = "https://order-tracker-api-production.up.railway.app/customer";
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -125,7 +125,7 @@ const CustomerComponent: React.FC = () => {
   };
 
   const handleDelete = (customerId: string) => {
-    const url = `http://localhost:8000/customer/${customerId}`;
+    const url = `https://order-tracker-api-production.up.railway.app/customer/${customerId}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,

@@ -93,7 +93,7 @@ const ReportComponent = () => {
 
   useEffect(() => {
     const fetchReports = () => {
-      const url = "http://localhost:8000/report";
+      const url = "https://order-tracker-api-production.up.railway.app/report";
       const headers = {
         "Content-Type": "application/json",
         Authorization: token,

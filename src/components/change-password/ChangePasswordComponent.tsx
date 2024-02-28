@@ -36,8 +36,8 @@ const ChangePasswordComponent = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const url = "http://localhost:8000/update/password";
-    // const url = "http://localhost:8000/update/password";
+    const url = "https://order-tracker-api-production.up.railway.app/update/password";
+    // const url = "https://order-tracker-api-production.up.railway.app/update/password";
     const data: StaffData = {
       old_password: oldPassword,
       new_password: newPassword,

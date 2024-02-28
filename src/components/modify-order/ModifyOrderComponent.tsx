@@ -34,7 +34,7 @@ const ModifyOrderComponent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `http://localhost:8000/order/${order_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/order/${order_id}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -54,7 +54,7 @@ const ModifyOrderComponent = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const url = `http://localhost:8000/order/${order_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/order/${order_id}`;
     const data: OrderData = {
       details,
       cost_of_order,

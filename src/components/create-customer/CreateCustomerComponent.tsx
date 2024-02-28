@@ -29,7 +29,7 @@ const CreateCustomerComponent: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const url = "http://localhost:8000/customer";
+    const url = "https://order-tracker-api-production.up.railway.app/customer";
     const data: CustomerData = {
       full_name: fullName,
       phone_number: phoneNumber,

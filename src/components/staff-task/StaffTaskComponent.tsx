@@ -58,7 +58,7 @@ const StaffTaskComponent = () => {
 
   useEffect(() => {
     const fetchTask = () => {
-      const url = `http://localhost:8000/view/task/${user_id}`;
+      const url = `https://order-tracker-api-production.up.railway.app/view/task/${user_id}`;
       const headers = {
         "Content-Type": "application/json",
         Authorization: token,

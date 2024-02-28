@@ -64,7 +64,7 @@ const ForgotPasswordComponent = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     setLoading(true);
     e.preventDefault();
-    const url = "http://localhost:8000/reset/password";
+    const url = "https://order-tracker-api-production.up.railway.app/reset/password";
     const data: ForgotPasswordDetails = {
       email: email,
       security_question: security_question,

@@ -31,7 +31,7 @@ const CreateMilestoneComponent = () => {
   const [error, setError] = useState<string | null>(null);
 const navigate = useNavigate()
   useEffect(() => {
-    const url = `http://localhost:8000/order/${order_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/order/${order_id}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -45,7 +45,7 @@ const navigate = useNavigate()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const url = `http://localhost:8000/milestone`;
+    const url = `https://order-tracker-api-production.up.railway.app/milestone`;
     const data: MilestoneData = {
       order_id: order_id,
       description,

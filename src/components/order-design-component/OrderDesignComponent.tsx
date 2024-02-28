@@ -14,7 +14,7 @@ const OrderDesignComponent: React.FC = () => {
   const { order_id } = useParams<{ order_id: string }>();
   const { token } = useSelector((state: any) => state.user.userDetails);
   useEffect(() => {
-    const url = `http://localhost:8000/order/${order_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/order/${order_id}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,

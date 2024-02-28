@@ -104,7 +104,7 @@ const MilestoneComponent: React.FC = () => {
 
   useEffect(() => {
     const fetchMilestones = () => {
-      const url = "http://localhost:8000/milestone";
+      const url = "https://order-tracker-api-production.up.railway.app/milestone";
       const headers = {
         "Content-Type": "application/json",
         Authorization: token,
@@ -147,7 +147,7 @@ const MilestoneComponent: React.FC = () => {
   };
 
   const handleDelete = (milestoneId: string) => {
-    const url = `http://localhost:8000/milestone/${milestoneId}`;
+    const url = `https://order-tracker-api-production.up.railway.app/milestone/${milestoneId}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,

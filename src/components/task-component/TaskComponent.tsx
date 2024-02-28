@@ -96,7 +96,7 @@ const TaskComponent: React.FC = () => {
 
   useEffect(() => {
     const fetchTask = () => {
-      const url = "http://localhost:8000/task";
+      const url = "https://order-tracker-api-production.up.railway.app/task";
       const headers = {
         "Content-Type": "application/json",
         Authorization: token,
@@ -137,7 +137,7 @@ const TaskComponent: React.FC = () => {
   };
 
   const handleDelete = (taskId: string) => {
-    const url = `http://localhost:8000/task/${taskId}`;
+    const url = `https://order-tracker-api-production.up.railway.app/task/${taskId}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,

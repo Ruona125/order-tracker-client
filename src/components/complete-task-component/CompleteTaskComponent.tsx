@@ -54,7 +54,7 @@ const CompleteTaskComponent: React.FC = () => {
 
   useEffect(() => {
     const fetchTask = () => {
-      const url = "http://localhost:8000/task/complete";
+      const url = "https://order-tracker-api-production.up.railway.app/task/complete";
       const headers = {
         "Content-Type": "application/json",
         Authorization: token,

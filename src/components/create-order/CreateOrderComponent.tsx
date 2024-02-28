@@ -46,7 +46,7 @@ const CreateOrderComponent: React.FC = () => {
 
 
   useEffect(() => {
-    const url = `http://localhost:8000/customer/${customer_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/customer/${customer_id}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -73,7 +73,7 @@ const CreateOrderComponent: React.FC = () => {
       formData.append("order_design_artwork", order_design_artwork);
     }
 
-    const url = "http://localhost:8000/order";
+    const url = "https://order-tracker-api-production.up.railway.app/order";
     const headers = {
       "Content-Type": "multipart/form-data",
       Authorization: token,

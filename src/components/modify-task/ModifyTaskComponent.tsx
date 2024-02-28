@@ -30,7 +30,7 @@ const ModifyTaskComponent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `http://localhost:8000/task/${task_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/task/${task_id}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -45,7 +45,7 @@ const ModifyTaskComponent = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const url = `http://localhost:8000/task/${task_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/task/${task_id}`;
     const data: TaskData = {
       deadline,
       task,

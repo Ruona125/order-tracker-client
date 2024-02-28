@@ -105,7 +105,7 @@ const IncomeComponent: React.FC = () => {
   const { token, roles } = useSelector((state: any) => state.user.userDetails);
 
   useEffect(() => {
-    const url = "http://localhost:8000/income";
+    const url = "https://order-tracker-api-production.up.railway.app/income";
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -133,7 +133,7 @@ const IncomeComponent: React.FC = () => {
   };
 
   const handleDelete = (incomeId: string) => {
-    const url = `http://localhost:8000/income/${incomeId}`;
+    const url = `https://order-tracker-api-production.up.railway.app/income/${incomeId}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,

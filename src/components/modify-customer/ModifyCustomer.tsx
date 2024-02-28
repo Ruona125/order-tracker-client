@@ -30,7 +30,7 @@ const ModifyCustomerComponent: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `http://localhost:8000/customer/${customer_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/customer/${customer_id}`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -45,7 +45,7 @@ const ModifyCustomerComponent: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const url = `http://localhost:8000/customer/${customer_id}`;
+    const url = `https://order-tracker-api-production.up.railway.app/customer/${customer_id}`;
     const data: CustomerData = {
       full_name: full_name,
       phone_number: phone_number,
