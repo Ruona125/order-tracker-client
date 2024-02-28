@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Logo from "../../assets/order.jpg";
-import { Button, MenuItem, IconButton, InputAdornment } from "@mui/material";
+import { Button, IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const RegisterAdminComponent = () => {

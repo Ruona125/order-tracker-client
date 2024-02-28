@@ -1,4 +1,4 @@
-import React from "react";
+
 import RegisterAdminComponent from "../../components/register-admin/RegisterAdminComponent";
 import NavComponent from "../../components/nav/NavComponent";
 
