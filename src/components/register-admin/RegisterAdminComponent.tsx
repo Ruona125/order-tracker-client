@@ -143,7 +143,7 @@ const RegisterAdminComponent = () => {
             className="login-button"
             style={{ color: "#fff", backgroundColor: "red", marginTop: "23px" }}
           >
-            Create Staff
+            Create Admin
           </Button>
         )}
         {error && <p style={{ color: "red" }}>{error}</p>}
