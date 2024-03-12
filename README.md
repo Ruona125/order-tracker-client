@@ -4,6 +4,6 @@ It enables you to create an order for a particular customer with a milestone cou
 
 To run this project, follow the following steps
 1. Clone this repository,
-2. Run npm install
-3. Run npm run dev(It's built with vite)
+2. Run yarn
+3. Run yarn run dev(It's built with vite)
 
