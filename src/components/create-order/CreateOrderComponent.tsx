@@ -186,23 +186,8 @@ const CreateOrderComponent: React.FC = () => {
           />
           <br />
 
-          <label
-            htmlFor="file-upload"
-            style={{
-              justifyContent: "center",
-              paddingBottom: "15px",
-              color: "red",
-            }}
-          >
-            Order Design:
-          </label>
-          <input
-            onChange={fileSelected}
-            type="file"
-            name="order_design_artwork"
-            accept="image/*"
-            style={{ paddingBottom: "23px" }}
-          />
+         
+         
           {/* <br /> */}
 
           {loading ? (
