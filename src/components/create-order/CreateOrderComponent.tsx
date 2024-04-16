@@ -36,9 +36,6 @@ const CreateOrderComponent: React.FC = () => {
     new Date().toISOString().split("T")[0]
   );
   const [status, setStatus] = useState<string | null>("");
-  const [order_design_artwork, setOrderDesignArtwork] = useState<File | null>(
-    null
-  );
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -69,9 +66,6 @@ const CreateOrderComponent: React.FC = () => {
     formData.append("end_date", end_date);
     formData.append("status", String(status));
     formData.append("order_number", String(order_number))
-    if (order_design_artwork !== null) {
-      formData.append("order_design_artwork", order_design_artwork);
-    }
 
     const url = "https://order-tracker-api-production.up.railway.app/order";
     const headers = {
@@ -97,13 +91,6 @@ const CreateOrderComponent: React.FC = () => {
     } catch (err) {
       setLoading(false)
       setError("Error sending data");
-    }
-  };
-
-  const fileSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setOrderDesignArtwork(file);
     }
   };
 
