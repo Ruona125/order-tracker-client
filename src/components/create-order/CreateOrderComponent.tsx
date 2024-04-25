@@ -69,7 +69,7 @@ const CreateOrderComponent: React.FC = () => {
 
     const url = "https://order-tracker-api-production.up.railway.app/order";
     const headers = {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
       Authorization: token,
     };
     setLoading(true)
